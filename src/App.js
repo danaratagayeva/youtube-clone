@@ -3,6 +3,8 @@ import Menu from './components/Menu';
 import Navbar from './components/Navbar';
 import { darkTheme, lightTheme } from './utils/Theme';
 import { useState } from 'react';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { Domain } from '@mui/icons-material';
 
 const Container = styled.div`
   display: flex;
@@ -24,47 +26,7 @@ function App() {
         <Menu setDarkMode={setDarkMode} darkMode={darkMode} />
         <Main>
           <Navbar />
-          <Wrapper>
-            <h1>afdsfsf</h1>
-            <h1>afdsfsf</h1>
-            <h1>afdsfsf</h1>
-            <h1>afdsfsf</h1>
-            <h1>afdsfsf</h1>
-            <h1>afdsfsf</h1>
-            <h1>afdsfsf</h1>
-            <h1>afdsfsf</h1>
-            <h1>afdsfsf</h1>
-            <h1>afdsfsf</h1>
-            <h1>afdsfsf</h1>
-            <h1>afdsfsf</h1>
-            <h1>afdsfsf</h1>
-            <h1>afdsfsf</h1>
-            <h1>afdsfsf</h1>
-            <h1>afdsfsf</h1>
-            <h1>afdsfsf</h1>
-            <h1>afdsfsf</h1>
-            <h1>afdsfsf</h1>
-            <h1>afdsfsf</h1>
-            <h1>afdsfsf</h1>
-            <h1>afdsfsf</h1>
-            <h1>afdsfsf</h1>
-            <h1>afdsfsf</h1>
-            <h1>afdsfsf</h1>
-            <h1>afdsfsf</h1>
-            <h1>afdsfsf</h1>
-            <h1>afdsfsf</h1>
-            <h1>afdsfsf</h1>
-            <h1>afdsfsf</h1>
-            <h1>afdsfsf</h1>
-            <h1>afdsfsf</h1>
-            <h1>afdsfsf</h1>
-            <h1>afdsfsf</h1>
-            <h1>afdsfsf</h1>
-            <h1>afdsfsf</h1>
-            <h1>afdsfsf</h1>
-            <h1>afdsfsf</h1>
-            <h1>afdsfsf</h1>
-          </Wrapper>
+          <Wrapper></Wrapper>
         </Main>
       </Container>
     </ThemeProvider>
