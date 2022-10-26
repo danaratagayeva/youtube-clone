@@ -71,8 +71,15 @@ const Button = styled.button`
   align-items: center;
   gap: 5px;
 `;
+const Title = styled.h2`
+  font-size: 14px;
+  font-weight: 500;
+  color: #aaaaaa;
+  margin-bottom: 20px;
+`;
 
-const Menu = () => {
+const Menu = (props) => {
+  const { darkMode, setDarkMode } = props;
   return (
     <Container>
       <Wrapper>
@@ -110,6 +117,7 @@ const Menu = () => {
           </Button>
         </Login>
         <Hr />
+        <Title>BEST OF YOU-CLONE</Title>
         <Item>
           <LibraryMusicOutlinedIcon />
           Music
@@ -147,7 +155,7 @@ const Menu = () => {
           <HelpOutlineOutlinedIcon />
           Help
         </Item>
-        <Item>
+        <Item onClick={() => setDarkMode(!darkMode)}>
           <SettingsBrightnessOutlinedIcon />
           Light Mode
         </Item>
