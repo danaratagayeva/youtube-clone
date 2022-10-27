@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import Comments from '../components/Comments';
 import ThumbUpAltOutlinedIcon from '@mui/icons-material/ThumbUpAltOutlined';
 import ThumbDownAltOutlinedIcon from '@mui/icons-material/ThumbDownAltOutlined';
 import ReplyOutlinedIcon from '@mui/icons-material/ReplyOutlined';
@@ -40,10 +41,67 @@ const Buttons = styled.div`
   color: ${({ theme }) => theme.text};
 `;
 
-const Button = styled.div``;
+const Button = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  cursor: pointer;
+`;
+
+const Hr = styled.hr`
+border:0.5px solid {({theme})=>theme.soft}
+margin: 15px 0px;`;
 
 const Recommendation = styled.div`
   flex: 2;
+`;
+
+const Channel = styled.div`
+  display: flex;
+  justify-content: space-between;
+`;
+
+const ChannelInfo = styled.div`
+  display: flex;
+  gap: 20px;
+`;
+
+const Image = styled.img`
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+`;
+
+const ChannelDetail = styled.div`
+  display: flex;
+  flex-direction: column;
+  color: ${({ theme }) => theme.text};
+`;
+
+const ChannelName = styled.span`
+  font-weight: 500;
+`;
+
+const ChannelCounter = styled.span`
+  margin-top: 5px;
+  margin-bottom: 20px;
+  color: ${({ theme }) => theme.textSoft};
+  font-size: 12px;
+`;
+
+const Description = styled.p`
+  font-size: 14px;
+`;
+
+const Subscribe = styled.button`
+  background-color: #cc1a00;
+  font-weight: 500;
+  color: white;
+  border: none;
+  border-radius: 3px;
+  height: max-content;
+  padding: 10px 20px;
+  cursor: pointer;
 `;
 
 const Video = () => {
@@ -81,6 +139,25 @@ const Video = () => {
             </Button>
           </Buttons>
         </Details>
+        <Hr />
+        <Channel>
+          <ChannelInfo>
+            <Image src='../img/logo.png' />
+            <ChannelDetail>
+              <ChannelName>Clone dev</ChannelName>
+              <ChannelCounter>200K subscribers</ChannelCounter>
+              <Description>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Tenetur
+                quia facilis laborum temporibus optio nostrum quod molestias
+                saepe, veritatis ab eveniet, illo rerum totam deserunt rem
+                soluta necessitatibus quisquam iste.
+              </Description>
+            </ChannelDetail>
+          </ChannelInfo>
+          <Subscribe>Subscribe</Subscribe>
+        </Channel>
+        <Hr />
+        <Comments />
       </Content>
       <Recommendation>Recommendation</Recommendation>
     </Container>
