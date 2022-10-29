@@ -17,6 +17,7 @@ const Details = styled.div`
   display: flex;
   flex-direction: column;
   gap: 10px;
+  color: ${({ theme }) => theme.text};
 `;
 
 const Name = styled.span`
