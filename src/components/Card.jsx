@@ -49,9 +49,9 @@ const Card = () => {
   return (
     <Link to='/video/test' style={{ textDecoration: 'none' }}>
       <Container>
-        <Image src='../img/maxresdefault.jpeg' />
+        <Image src='/img/maxresdefault.jpeg' />
         <Details />
-        <ChannelImage src='../img/logo.png' />
+        {/* <ChannelImage src='../img/logo.png' /> */}
         <Texts>
           <Title>Test Video</Title>
           <ChannelName>YouClone Dev</ChannelName>

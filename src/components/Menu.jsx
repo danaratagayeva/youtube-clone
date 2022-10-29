@@ -1,7 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
-import tube from '../img/logo-1.png';
 import HomeIcon from '@mui/icons-material/Home';
 import ExploreOutlinedIcon from '@mui/icons-material/ExploreOutlined';
 import SubscriptionsOutlinedIcon from '@mui/icons-material/SubscriptionsOutlined';
@@ -86,7 +85,7 @@ const Menu = (props) => {
       <Wrapper>
         <Link to='/' style={{ textDecoration: 'none', color: 'inherit' }}>
           <Logo>
-            <Img src={tube} />
+            <Img src='/img/logo-1.png' />
             You-Clone
           </Logo>
         </Link>
