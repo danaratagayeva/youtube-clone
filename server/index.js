@@ -20,6 +20,7 @@ const connect = () => {
     });
 };
 
+app.use(express.json());
 app.use('/api/users', userRoutes);
 app.use('/api/comments', commentRoutes);
 app.use('/api/videos', videoRoutes);
