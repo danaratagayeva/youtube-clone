@@ -1,12 +1,19 @@
+import mongoose from "mongoose";
 import { createError } from "../error";
-import User from "../models/User";
+import User from "../models/User.js";
 
 export const update = async (req, res, next) => {
   if (req.params.id === req.user.id) {
     try {
-      const updatedUser = await User.findByIdAndUpdate(req.params.id, {
-        $set: res.body,
-      });
+      const updatedUser = await User.findByIdAndUpdate(
+        req.params.id,
+        {
+          $set: req.body,
+        },
+        {
+          new: true,
+        }
+      );
       res.status(200).json(updatedUser);
     } catch (err) {
       next(err);
