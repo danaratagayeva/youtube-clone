@@ -1,6 +1,33 @@
-import express from 'express';
-import {} from '../controllers/video.js';
+import express from 'express'
+import { verifyToken } from '../verifyToken.js'
+import {
+  addVideo,
+  updateVideo,
+  deleteVideo,
+  getVideo,
+  trend,
+  random,
+  subscribe,
+} from '../controllers/video.js'
 
-const router = express.Router();
+const router = express.Router()
 
-export default router;
+//create a video
+
+router.post('/', verifyToken, addVideo)
+
+router.put('/:id', verifyToken, updateVideo)
+
+router.delete('/:id', verifyToken, deleteVideo)
+
+router.get('/find/:id', getVideo)
+
+router.put('/view/:id')
+
+router.get('/trend', trend)
+
+router.get('/random', random)
+
+router.get('/subscribe', verifyToken, subscribe)
+
+export default router
