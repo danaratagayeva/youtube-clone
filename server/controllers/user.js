@@ -1,5 +1,4 @@
-import mongoose from "mongoose";
-import { createError } from "../error";
+import { createError } from "../error.js";
 import User from "../models/User.js";
 
 export const update = async (req, res, next) => {
