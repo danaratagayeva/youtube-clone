@@ -4,6 +4,7 @@ import mongoose from 'mongoose'
 import User from '../models/User.js'
 
 export const addVideo = async (req, res, next) => {
+  console.log('i am user 1', req.user.id)
   const newVideo = new Video({ userId: req.user.id, ...req.body })
   try {
     const savedVideo = await newVideo.save()
@@ -92,11 +93,12 @@ export const trend = async (req, res, next) => {
 export const sub = async (req, res, next) => {
   try {
     const user = await User.findById(req.user.id)
+    console.log(user)
     const subscribedChannels = user.subscribedUsers
 
     const list = await Promise.all(
-      subscribedChannels.map((channelId) => {
-        return Video.find({ userId: channelId })
+      subscribedChannels.map(async (channelId) => {
+        return await Video.find({ userId: channelId })
       })
     )
     res.status(200).json(list)

@@ -28,6 +28,6 @@ router.get('/trend', trend)
 
 router.get('/random', random)
 
-router.get('/sub', verifyToken, sub)
+router.put('/sub', verifyToken, sub)
 
 export default router
