@@ -3,7 +3,7 @@ import {
   update,
   deleteUser,
   getUser,
-  subscribe,
+  sub,
   unsubscribe,
   like,
   dislike,
@@ -22,7 +22,7 @@ router.delete('/:id', verifyToken, deleteUser)
 router.get('/find/:id', getUser)
 
 //subscribe a user
-router.put('/sub/:id', verifyToken, subscribe)
+router.put('/sub/:id', verifyToken, sub)
 
 //unsubscribe a user
 router.put('/unsub/:id', verifyToken, unsubscribe)

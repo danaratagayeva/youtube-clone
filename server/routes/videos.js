@@ -7,7 +7,7 @@ import {
   getVideo,
   trend,
   random,
-  subscribe,
+  sub,
 } from '../controllers/video.js'
 
 const router = express.Router()
@@ -28,6 +28,6 @@ router.get('/trend', trend)
 
 router.get('/random', random)
 
-router.get('/subscribe', verifyToken, subscribe)
+router.get('/sub', verifyToken, sub)
 
 export default router
