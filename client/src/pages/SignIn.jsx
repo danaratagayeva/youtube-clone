@@ -1,5 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
+import { useState, useEffect } from 'react'
 
 const Container = styled.div`
   display: flex;
@@ -63,18 +64,36 @@ const Link = styled.span`
 `
 
 const SignIn = () => {
+  const [name, setName] = useState('')
+  const [ameil, setEmail] = useState('')
+  const [password, setPassword] = useState('')
   return (
     <Container>
       <Wrapper>
         <Title>Sign In</Title>
         <SubTitle>to continue to You-clone</SubTitle>
-        <Input placeholder="username" />
-        <Input type="password" placeholder="password" />
+        <Input
+          placeholder="username"
+          onChange={(e) => setName(e.target.value)}
+        />
+        <Input
+          type="password"
+          placeholder="password"
+          onChange={(e) => setPassword(e.target.value)}
+        />
         <Button>Sign In</Button>
         <Title>or</Title>
         <Input placeholder="username" />
-        <Input type="email" placeholder="email" />
-        <Input type="password" placeholder="password" />
+        <Input
+          type="email"
+          placeholder="email"
+          onChange={(e) => setName(e.target.value)}
+        />
+        <Input
+          type="password"
+          placeholder="password"
+          onChange={(e) => setPassword(e.target.value)}
+        />
         <Button>Sign Up</Button>
       </Wrapper>
       <More>
