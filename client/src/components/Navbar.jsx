@@ -7,6 +7,7 @@ import VideoCallOutlinedIcon from '@mui/icons-material/VideoCallOutlined'
 //import SignIn from '../pages/SignIn'
 import { useSelector } from 'react-redux'
 //import { Avatar } from '@mui/material'
+import { img } from '../pages/SignIn'
 
 const Container = styled.div`
   position: sticky;
@@ -36,7 +37,7 @@ const Avatar = styled.div`
   width: 32px;
   height: 32px;
   border-radius: 50%;
-  background-color: #999;
+  //background-color: #999;
 `
 
 const Search = styled.div`
@@ -84,7 +85,7 @@ const Navbar = () => {
         {currentUser ? (
           <User>
             <VideoCallOutlinedIcon />
-            <Avatar />
+            <Avatar src={currentUser.img} />
             {currentUser.name}
           </User>
         ) : (
