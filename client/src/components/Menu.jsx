@@ -18,6 +18,7 @@ import HelpOutlineOutlinedIcon from '@mui/icons-material/HelpOutlineOutlined'
 import SettingsBrightnessOutlinedIcon from '@mui/icons-material/SettingsBrightnessOutlined'
 import AccountCircleOutlinedIcon from '@mui/icons-material/AccountCircleOutlined'
 import SignIn from '../pages/SignIn'
+import { useSelector } from 'react-redux'
 
 const Container = styled.div`
   flex: 1;
@@ -85,6 +86,7 @@ const Title = styled.h2`
 
 const Menu = (props) => {
   const { darkMode, setDarkMode } = props
+  const { currentUser } = useSelector((state) => state.user)
   return (
     <Container>
       <Wrapper>
@@ -123,16 +125,20 @@ const Menu = (props) => {
           History
         </Item>
         <Hr />
-        <Login>
-          Sign in to like videos, comment and subscribe.
-          <Link to="signin" style={{ textDecoration: 'none' }}>
-            <Button>
-              <AccountCircleOutlinedIcon />
-              SIGN IN
-            </Button>
-          </Link>
-        </Login>
-        <Hr />
+        {!currentUser && (
+          <>
+            <Login>
+              Sign in to like videos, comment and subscribe.
+              <Link to="signin" style={{ textDecoration: 'none' }}>
+                <Button>
+                  <AccountCircleOutlinedIcon />
+                  SIGN IN
+                </Button>
+              </Link>
+            </Login>
+            <Hr />
+          </>
+        )}
         <Title>BEST OF YOU-CLONE</Title>
         <Item>
           <LibraryMusicOutlinedIcon />
