@@ -6,8 +6,11 @@ import SearchOutlinedIcon from '@mui/icons-material/SearchOutlined'
 import VideoCallOutlinedIcon from '@mui/icons-material/VideoCallOutlined'
 //import SignIn from '../pages/SignIn'
 import { useSelector } from 'react-redux'
+import { logout } from '../redux/userSlice'
+import { useDispatch } from 'react-redux'
+import axios from 'axios'
 //import { Avatar } from '@mui/material'
-import { img } from '../pages/SignIn'
+//import { img } from '../pages/SignIn'
 
 const Container = styled.div`
   position: sticky;
@@ -33,7 +36,7 @@ const User = styled.div`
   color: ${({ theme }) => theme.text};
 `
 
-const Avatar = styled.div`
+const Avatar = styled.img`
   width: 32px;
   height: 32px;
   border-radius: 50%;
@@ -74,7 +77,12 @@ const Button = styled.button`
 
 const Navbar = () => {
   const { currentUser } = useSelector((state) => state.user)
+  const dispatch = useDispatch()
 
+  const handleLogout = (e) => {
+    e.preventDefault()
+    dispatch(logout())
+  }
   return (
     <Container>
       <Wrapper>
@@ -87,6 +95,7 @@ const Navbar = () => {
             <VideoCallOutlinedIcon />
             <Avatar src={currentUser.img} />
             {currentUser.name}
+            <Button onClick={handleLogout}>Logout</Button>
           </User>
         ) : (
           <Link to="signin" style={{ TextDecoration: 'none' }}>

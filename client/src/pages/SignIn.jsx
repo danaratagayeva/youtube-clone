@@ -100,7 +100,7 @@ const SignIn = () => {
           })
       })
       .catch((error) => {
-        dispatch(loginFailure())
+        dispatch(loginFailure)
       })
   }
   return (
