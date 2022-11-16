@@ -114,7 +114,7 @@ const Video = () => {
   const dispatch = useDispatch()
 
   const path = useLocation().pathname.split('/')[2]
-  const [video, setVideo] = useState({})
+
   const [channel, setChannel] = useState({})
 
   useEffect(() => {
@@ -123,7 +123,6 @@ const Video = () => {
         const videoRes = await axios.get(`/videos/find/${path}`)
         const channelRes = await axios.get(`/users/find/${videoRes.userId}`)
 
-        setVideo(videoRes.data)
         setChannel(channelRes.data)
       } catch (err) {}
     }
