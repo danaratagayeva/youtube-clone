@@ -10,6 +10,8 @@ import { useSelector, useDispatch } from 'react-redux'
 import { useLocation } from 'react-router-dom'
 import { useEffect, useState } from 'react'
 import axios from 'axios'
+import { fetchSuccess } from '../redux/videoSlice'
+import { format } from 'prettier'
 
 const Container = styled.div`
   display: flex;
@@ -111,23 +113,27 @@ const Subscribe = styled.button`
 
 const Video = () => {
   const { currentUser } = useSelector((state) => state.user)
+  const { currentVideo } = useSelector((state) => state.video)
   const dispatch = useDispatch()
 
   const path = useLocation().pathname.split('/')[2]
-
   const [channel, setChannel] = useState({})
 
   useEffect(() => {
     const fetchData = async () => {
       try {
         const videoRes = await axios.get(`/videos/find/${path}`)
-        const channelRes = await axios.get(`/users/find/${videoRes.userId}`)
-
+        const channelRes = await axios.get(
+          `/users/find/${videoRes.data.userId}`
+        )
         setChannel(channelRes.data)
-      } catch (err) {}
+        dispatch(fetchSuccess(videoRes.data))
+      } catch (err) {
+        console.log(err)
+      }
     }
-    //fetchData()
-  }, [path])
+    fetchData()
+  }, [path, dispatch])
 
   return (
     <Container>
@@ -138,21 +144,21 @@ const Video = () => {
             height="720"
             src="https://www.youtube.com/embed/k3Vfj-e1Ma4"
             title="Youtube video player"
-            frameborder="0"
-            allow="accelerimeter;autoplay;clipboard-write;encrypted-media;gyroscope;picture-in-picture"
-            allowfullscreen
+            frameBorder="0"
+            allow="accelerimeter; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowFullScreen
           ></iframe>
         </VideoWrapper>
-        <Title>Test video</Title>
+        <Title>{currentVideo.title}</Title>
         <Details>
-          <Info>7,948,154 views - Jun 22, 2022</Info>
+          <Info>{currentVideo.views} views -</Info>
           <Buttons>
             <Button>
-              <ThumbUpAltOutlinedIcon /> 123
+              <ThumbUpAltOutlinedIcon /> {currentVideo.likes?.length}
             </Button>
             <Button>
               <ThumbDownAltOutlinedIcon />
-              Dislike
+              dislike
             </Button>
             <Button>
               <ReplyOutlinedIcon />
@@ -165,22 +171,17 @@ const Video = () => {
           </Buttons>
         </Details>
         <Hr />
-        <Channel>
+        {/* <Channel>
           <ChannelInfo>
-            <Image src="../img/logo.png" />
+            <Image src={channel.img} />
             <ChannelDetail>
-              <ChannelName>Clone dev</ChannelName>
-              <ChannelCounter>200K subscribers</ChannelCounter>
-              <Description>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Tenetur
-                quia facilis laborum temporibus optio nostrum quod molestias
-                saepe, veritatis ab eveniet, illo rerum totam deserunt rem
-                soluta necessitatibus quisquam iste.
-              </Description>
+              <ChannelName>{channel.name}</ChannelName>
+              <ChannelCounter>{channel.subscribers} subscribers</ChannelCounter>
+              <Description>{currentVideo.desc}</Description>
             </ChannelDetail>
           </ChannelInfo>
           <Subscribe>Subscribe</Subscribe>
-        </Channel>
+        </Channel> */}
         <Hr />
         <Comments />
       </Content>
