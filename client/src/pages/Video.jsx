@@ -6,12 +6,14 @@ import ThumbUpAltOutlinedIcon from '@mui/icons-material/ThumbUpAltOutlined'
 import ThumbDownAltOutlinedIcon from '@mui/icons-material/ThumbDownAltOutlined'
 import ReplyOutlinedIcon from '@mui/icons-material/ReplyOutlined'
 import AddTaskOutlinedIcon from '@mui/icons-material/AddTaskOutlined'
+import ThumbUpIcon from '@mui/icons-material/ThumbUp'
+import ThumbDownIcon from '@mui/icons-material/ThumbDown'
 import { useSelector, useDispatch } from 'react-redux'
 import { useLocation } from 'react-router-dom'
 import { useEffect, useState } from 'react'
 import axios from 'axios'
 import { fetchSuccess } from '../redux/videoSlice'
-import { format } from 'prettier'
+import { format } from 'timeago'
 
 const Container = styled.div`
   display: flex;
@@ -135,6 +137,13 @@ const Video = () => {
     fetchData()
   }, [path, dispatch])
 
+  const handleLike = async () => {
+    await axios.put(`/users/like/${currentVideo._id}`)
+  }
+  const handleDislike = async () => {
+    await axios.put(`/users/dislike/${currentVideo._id}`)
+  }
+
   return (
     <Container>
       <Content>
@@ -151,13 +160,24 @@ const Video = () => {
         </VideoWrapper>
         <Title>{currentVideo.title}</Title>
         <Details>
-          <Info>{currentVideo.views} views -</Info>
+          <Info>
+            {/* {currentVideo.views} views -{format(currentVideo.createdAt)} */}
+          </Info>
           <Buttons>
-            <Button>
-              <ThumbUpAltOutlinedIcon /> {currentVideo.likes?.length}
+            <Button onClick={handleLike}>
+              {currentVideo.likes?.includes(currentUser._id) ? (
+                <ThumbUpIcon />
+              ) : (
+                <ThumbUpAltOutlinedIcon />
+              )}
+              {currentVideo.likes?.length}
             </Button>
-            <Button>
-              <ThumbDownAltOutlinedIcon />
+            <Button onClick={handleDislike}>
+              {currentVideo.dislikes?.includes(currentUser._id) ? (
+                <ThumbDownIcon />
+              ) : (
+                <ThumbDownAltOutlinedIcon />
+              )}
               dislike
             </Button>
             <Button>
