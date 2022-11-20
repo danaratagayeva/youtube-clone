@@ -3,11 +3,9 @@ import styled from 'styled-components'
 import Card from '../components/Card'
 import Comments from '../components/Comments'
 import ThumbUpAltOutlinedIcon from '@mui/icons-material/ThumbUpAltOutlined'
-import ThumbDownAltOutlinedIcon from '@mui/icons-material/ThumbDownAltOutlined'
 import ReplyOutlinedIcon from '@mui/icons-material/ReplyOutlined'
 import AddTaskOutlinedIcon from '@mui/icons-material/AddTaskOutlined'
 import ThumbUpIcon from '@mui/icons-material/ThumbUp'
-import ThumbDownIcon from '@mui/icons-material/ThumbDown'
 import ThumbDownAltIcon from '@mui/icons-material/ThumbDownAlt'
 import ThumbDownOffAltIcon from '@mui/icons-material/ThumbDownOffAlt'
 import { useSelector, useDispatch } from 'react-redux'
@@ -15,7 +13,6 @@ import { useLocation } from 'react-router-dom'
 import { useEffect, useState } from 'react'
 import axios from 'axios'
 import { fetchSuccess, like, dislike } from '../redux/videoSlice'
-import { format } from 'timeago'
 import { subscription } from '../redux/userSlice'
 
 const Container = styled.div`
@@ -217,7 +214,7 @@ const Video = () => {
           </Subscribe>
         </Channel>
         <Hr />
-        <Comments />
+        <Comments videoId={currentVideo._id} />
       </Content>
       {/* <Recommendation>
         <Card type="sm" />
