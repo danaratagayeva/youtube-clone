@@ -1,4 +1,6 @@
+import axios from 'axios';
 import React from 'react';
+import { useEffect } from 'react';
 import styled from 'styled-components';
 import Comment from './Comment';
 
@@ -26,6 +28,19 @@ const Input = styled.input`
 `;
 
 const Comments = () => {
+const [Comments, setComments]=useState([]);
+
+useEffect((=>{
+  const fetchComments=async()=>{
+    try{
+      const res=await axios.get(`/comments/${videoId}`);
+      setComments(res.data);
+
+    }catch(err){}
+  }
+  fetchComments(;)
+}, [videoId]))
+
   return (
     <Container>
       <NewComment>
