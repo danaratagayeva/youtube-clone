@@ -9,6 +9,8 @@ import { useSelector } from 'react-redux'
 import { logout } from '../redux/userSlice'
 import { useDispatch } from 'react-redux'
 import axios from 'axios'
+import { useState } from 'react'
+import Upload from './Upload'
 //import { Avatar } from '@mui/material'
 //import { img } from '../pages/SignIn'
 
@@ -76,37 +78,43 @@ const Button = styled.button`
 `
 
 const Navbar = () => {
+  const [open, setOpen] = useState(false)
   const { currentUser } = useSelector((state) => state.user)
   const dispatch = useDispatch()
+
+  console.log(open)
 
   const handleLogout = (e) => {
     e.preventDefault()
     dispatch(logout())
   }
   return (
-    <Container>
-      <Wrapper>
-        <Search>
-          <Input placeholder="Search" />
-          <SearchOutlinedIcon />
-        </Search>
-        {currentUser ? (
-          <User>
-            <VideoCallOutlinedIcon />
-            <Avatar src={currentUser.img} />
-            {currentUser.name}
-            <Button onClick={handleLogout}>Logout</Button>
-          </User>
-        ) : (
-          <Link to="signin" style={{ TextDecoration: 'none' }}>
-            <Button>
-              <AccountCircleOutlinedIcon />
-              SIGN IN
-            </Button>
-          </Link>
-        )}
-      </Wrapper>
-    </Container>
+    <>
+      <Container>
+        <Wrapper>
+          <Search>
+            <Input placeholder="Search" />
+            <SearchOutlinedIcon />
+          </Search>
+          {currentUser ? (
+            <User>
+              <VideoCallOutlinedIcon onClick={() => setOpen(true)} />
+              <Avatar src={currentUser.img} />
+              {currentUser.name}
+              <Button onClick={handleLogout}>Logout</Button>
+            </User>
+          ) : (
+            <Link to="signin" style={{ TextDecoration: 'none' }}>
+              <Button>
+                <AccountCircleOutlinedIcon />
+                SIGN IN
+              </Button>
+            </Link>
+          )}
+        </Wrapper>
+      </Container>
+      {open && <Upload setOpen={setOpen} />}
+    </>
   )
 }
 
